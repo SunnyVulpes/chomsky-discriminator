@@ -5,7 +5,6 @@ package cmd
 
 import (
 	"chomsky-discriminator/pkg"
-	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -40,9 +39,11 @@ func Execute() {
 
 func init() {
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(testCmd)
 }
 
 func discriminate(cmd *cobra.Command, args []string) {
 	g := pkg.BuildGrammar()
-	fmt.Printf("%v", *g)
+
+	g.Print()
 }

@@ -223,14 +223,18 @@ func (g *Grammar) classifyP(left []byte, right [][]byte) int {
 		return 1
 	} else {
 		for _, r := range right {
-			if len(r) > 2 {
-				return 2
-			}
-			if len(r) == 1 && !g.checkVt(r[0]) {
-				return 2
-			}
-			if len(r) == 2 && (!g.checkVt(r[0]) || !g.checkVn(r[1])) {
-				return 2
+			n := true
+			for _, s := range r {
+				if !n && !g.checkVn(s) {
+					return 2
+				}
+				if n && !g.checkVt(s) {
+					n = false
+					continue
+				}
+				if !n && g.checkVt(s) {
+					return 2
+				}
 			}
 		}
 		return 3

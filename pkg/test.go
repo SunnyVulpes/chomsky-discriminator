@@ -12,8 +12,8 @@ func TestCase() *Grammar {
 		Class: 3,
 	}
 
-	g.buildP("N::=ND|D")
-	g.buildP("D::=0|1|2|3|4|5|6|7|8|9")
+	g.buildP("ab::=B")
+	g.buildP("B::=bc")
 
 	return g
 }

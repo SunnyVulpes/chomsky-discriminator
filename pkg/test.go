@@ -2,17 +2,17 @@ package pkg
 
 func TestCase() *Grammar {
 	g := &Grammar{
-		Name: 'S',
+		Name: 'G',
 		Vn: map[byte]struct{}{
-			'N': {},
-			'D': {},
+			'A': {},
+			'B': {},
 		},
 		Vt:    make(map[byte]struct{}),
 		S:     'N',
 		Class: 3,
 	}
 
-	g.buildP("ab::=B")
+	g.buildP("abc::=B")
 	g.buildP("B::=bc")
 
 	return g

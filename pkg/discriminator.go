@@ -102,10 +102,16 @@ func (g *Grammar) buildP(pStr string) {
 	}
 
 	left := []byte(pStr[:at])
+	hasVn := false
 	for _, c := range left {
 		if !g.checkVn(c) {
 			g.Vt[c] = struct{}{}
+		} else {
+			hasVn = true
 		}
+	}
+	if !hasVn {
+		exit("产生式左边不含有非终结符号，非法输入")
 	}
 
 	rightStr := pStr[at+3:]

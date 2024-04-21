@@ -111,11 +111,6 @@ func (g *Grammar) buildP(pStr string) {
 	rightStr := pStr[at+3:]
 	right := make([][]byte, 0)
 
-	class := g.classifyP(left, right)
-	if class < g.Class {
-		g.Class = class
-	}
-
 	hasReadBar := true
 	for i := 0; i < len(rightStr); i++ {
 		if rightStr[i] == '|' {
@@ -145,6 +140,11 @@ func (g *Grammar) buildP(pStr string) {
 		}
 
 		exit("意外的输入")
+	}
+
+	class := g.classifyP(left, right)
+	if class < g.Class {
+		g.Class = class
 	}
 
 	g.P = append(g.P, Production{
